@@ -1,7 +1,7 @@
 // INICIA A NAVEGAÇÃO ENTRE AS IMAGENS E SUAS RESPECTIVAS DESCRIÇÕES
 function initTabNav() {
-   const tabMenu = document.querySelectorAll('.js-tabmenu li');
-   const tabContent = document.querySelectorAll('.js-tabcontent section');
+   const tabMenu = document.querySelectorAll('[data-tab="menu"] li');
+   const tabContent = document.querySelectorAll('[data-tab="content"] section');
 
    if (tabMenu.length && tabContent.length) {
       // DEIXA O PRIMEIRO ITEM DA LISTA DE ANIMAIS SEMPRE ATIVO QUANDO O SITE FOR RECARREGADO
@@ -13,8 +13,8 @@ function initTabNav() {
          tabContent.forEach(section => {
             section.classList.remove('ativo');
          });
-
-         tabContent[index].classList.add('ativo');
+         const direcao = tabContent[index].dataset.anime;
+         tabContent[index].classList.add('ativo', direcao);
       }
 
       tabMenu.forEach((itemMenu, index) => {
@@ -30,7 +30,7 @@ initTabNav();
 // SCRIPTS PARA ACCORDION LIST DA SEÇÃO FAQ
 
 function initAccordion() {
-   const accordionList = document.querySelectorAll('.js-accordion dt');
+   const accordionList = document.querySelectorAll('[data-anime="accordion"] dt');
    accordionList[0].classList.add('ativo');
    accordionList[0].nextElementSibling.classList.add('ativo');
 
@@ -51,7 +51,7 @@ initAccordion();
 // SCRIPS PARA SMOOTH SCROLL PARA OS LINKS INTERNOS
 
 function initScrollSuave() {
-   const linksInternos = document.querySelectorAll('.js-menu a[href^="#"]');
+   const linksInternos = document.querySelectorAll('[data-menu="suave"] a[href^="#"]');
 
    linksInternos.forEach(link => {
       link.addEventListener('click', scrollToSection);
@@ -73,7 +73,7 @@ initScrollSuave();
 
 // SCRIPS PARA ANIMAÇÃO AO SCROLL
 function initAnimacaoScroll() {
-   const sections = document.querySelectorAll('.js-scroll');
+   const sections = document.querySelectorAll('[data-anime="scroll"]');
 
    if (sections.length) {
       const windowsMetade = window.innerHeight * 0.6;
